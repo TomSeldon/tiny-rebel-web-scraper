@@ -11,3 +11,4 @@ cache:
 
 script:
     - npm test
+    - node_modules/.bin/travis-commit-message-checker
