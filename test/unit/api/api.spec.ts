@@ -101,11 +101,12 @@ describe('API', () => {
         it('should resolve with an array of drinks', (done) => {
             mockDrinks = [
                 {
-                    abv: '4.2%',
+                    abv: 4.2,
                     available: true,
                     brewery: 'Tiny Rebel Brewing Co. (Newport, South Wales)',
                     cask: true,
                     currency: 'GBP',
+                    formattedAbv: '4.2%',
                     formattedPrice: '£3.30',
                     keg: false,
                     name: 'You Snows It',
@@ -205,11 +206,12 @@ describe('API', () => {
         it('should resolve with an array of only the keg drinks', (done) => {
             mockDrinks = [
                 {
-                    abv: '4.2%',
+                    abv: 4.2,
                     available: true,
                     brewery: 'Tiny Rebel Brewing Co. (Newport, South Wales)',
                     cask: true,
                     currency: 'GBP',
+                    formattedAbv: '4.2%',
                     formattedPrice: '£3.30',
                     keg: false,
                     name: 'You Snows It',
@@ -219,11 +221,12 @@ describe('API', () => {
                     vegan: false
                 },
                 {
-                    abv: '4.2%',
+                    abv: 4.2,
                     available: true,
                     brewery: 'Tiny Rebel Brewing Co. (Newport, South Wales)',
                     cask: false,
                     currency: 'GBP',
+                    formattedAbv: '4.2%',
                     formattedPrice: '£3.70',
                     keg: true,
                     name: 'Urban Pils',
@@ -324,11 +327,12 @@ describe('API', () => {
         it('should resolve with an array of only the cask drinks', (done) => {
             mockDrinks = [
                 {
-                    abv: '4.2%',
+                    abv: 4.2,
                     available: true,
                     brewery: 'Tiny Rebel Brewing Co. (Newport, South Wales)',
                     cask: true,
                     currency: 'GBP',
+                    formattedAbv: '4.2%',
                     formattedPrice: '£3.30',
                     keg: false,
                     name: 'You Snows It',
@@ -338,11 +342,12 @@ describe('API', () => {
                     vegan: false
                 },
                 {
-                    abv: '4.2%',
+                    abv: 4.2,
                     available: true,
                     brewery: 'Tiny Rebel Brewing Co. (Newport, South Wales)',
                     cask: false,
                     currency: 'GBP',
+                    formattedAbv: '4.2%',
                     formattedPrice: '£3.70',
                     keg: true,
                     name: 'Urban Pils',

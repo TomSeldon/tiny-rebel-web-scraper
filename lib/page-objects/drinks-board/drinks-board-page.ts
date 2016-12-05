@@ -36,6 +36,7 @@ export class DrinksBoardPage implements IDrinksBoardPage {
             brewery: this.getBrewery(rawDrink),
             cask: drinkType === 'cask',
             currency: 'GBP',
+            formattedAbv: this.getFormattedABV(rawDrink),
             formattedPrice: this.getFormattedDrinkPrice(rawDrink),
             keg: drinkType === 'keg',
             name: this.getDrinkName(rawDrink),
@@ -60,6 +61,10 @@ export class DrinksBoardPage implements IDrinksBoardPage {
         return price[1];
     }
 
+    private getFormattedABV(rawDrink: CheerioElement): string {
+        return this.page('.beer-abv', rawDrink).text();
+    }
+
     private getDrinkName (rawDrink: CheerioElement): string {
          return this.page('.beer-name', rawDrink).text().trim();
     }
@@ -72,8 +77,8 @@ export class DrinksBoardPage implements IDrinksBoardPage {
         return this.page('.beer-style', rawDrink).text();
     }
 
-    private getDrinkABV (rawDrink: CheerioElement): string {
-        return this.page('.beer-abv', rawDrink).text();
+    private getDrinkABV (rawDrink: CheerioElement): number {
+        return parseFloat(this.page('.beer-abv', rawDrink).text().replace('%', ''));
     }
 
     private getDrinkQuantity (rawDrink: CheerioElement): ('pint'|'half') {

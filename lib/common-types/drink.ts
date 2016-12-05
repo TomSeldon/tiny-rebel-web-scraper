@@ -7,7 +7,8 @@ export type Drink = {
     formattedPrice: string;
     quantity: 'pint'|'half';
     currency: string;
-    abv: string;
+    abv: number;
+    formattedAbv: string;
     vegan: boolean;
     keg: boolean;
     cask: boolean;
