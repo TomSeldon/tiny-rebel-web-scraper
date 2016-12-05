@@ -64,7 +64,7 @@ getAllCaskDrinks (barLocation: string): Promise<Drink[]>
 
 ## Return values
 
-The API will return an array of of `Drink` objects, i.e. POJOs with the following properties.
+The API will return an array of `Drink` objects, i.e. POJOs with the following properties.
 
 ```javascript
 // Drink
