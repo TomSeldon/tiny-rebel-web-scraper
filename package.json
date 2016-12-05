@@ -3,6 +3,9 @@
   "version": "0.0.0",
   "description": "Web scraper for getting beer information from the Tiny Rebel beer board",
   "main": "dist/index.js",
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "lint": "npm run lint:src && npm run lint:unit-tests",
     "lint:src": "tslint --config tslint.json --project tsconfig.json",
@@ -12,7 +15,8 @@
     "preintegration-tests": "npm run build",
     "integration-tests": "mocha test/integration/**/*.spec.js",
     "test": "npm run lint && npm run unit-tests && npm run integration-tests",
-    "build": "tsc"
+    "build": "tsc",
+    "prepublish": "npm test && npm run build"
   },
   "author": "Tom Seldon <https://www.tomseldon.co.uk>",
   "license": "ISC",
