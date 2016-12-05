@@ -4,7 +4,7 @@
   "description": "Web scraper for getting beer information from the Tiny Rebel beer board",
   "main": "dist/index.js",
   "scripts": {
-    "lint": "tslint --cconfig tslint.json ./lib/**/*.ts",
+    "lint": "tslint --config tslint.json --project tsconfig.json",
     "preunit-tests": "tsc test/unit/**/*.spec.ts --module commonjs --outDir test-dist/unit --target es6",
     "unit-tests": "mocha test-dist/unit/**/*.spec.js",
     "preintegration-tests": "npm run build",
