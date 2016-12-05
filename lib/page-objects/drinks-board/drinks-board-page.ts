@@ -28,7 +28,7 @@ export class DrinksBoardPage implements IDrinksBoardPage {
     private parseDrinkFromPage (rawDrink: CheerioElement, drinkType: string): Drink {
         return {
             abv: this.getDrinkABV(rawDrink),
-            available: this.isAvailable(rawDrink), // TODO: implement this
+            available: this.isAvailable(rawDrink),
             brewery: this.getBrewery(rawDrink),
             cask: drinkType === 'cask',
             currency: 'GBP',
@@ -92,6 +92,13 @@ export class DrinksBoardPage implements IDrinksBoardPage {
         return this.page('.beer-name .vegan', rawDrink).length === 1;
     }
 
+    /**
+     * TODO: Implement the check for whether the drink is available
+     *
+     * The vast majority of the time, the drinks listed on the beer board are all available.
+     *
+     * This makes finding an example of when a drink is unavailable quite difficult.
+     */
     private isAvailable (rawDrink: CheerioElement): boolean {
         return true;
     }
