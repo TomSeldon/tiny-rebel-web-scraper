@@ -1,10 +1,10 @@
-import * as fs from 'fs';
-import * as cheerio from 'cheerio';
 import * as chai from 'chai';
+import * as cheerio from 'cheerio';
+import * as fs from 'fs';
 import * as path from 'path';
 
-import { DrinksBoardPageFactory } from '../../../lib/page-objects/drinks-board';
 import { Drink } from '../../../lib/common-types';
+import { DrinksBoardPageFactory, IDrinksBoardPage } from '../../../lib/page-objects/drinks-board';
 
 const expect = chai.expect;
 
@@ -17,8 +17,8 @@ describe('drinks board page', () => {
     });
 
     describe('when parsing a page with one keg, and one cask drink', () => {
-        let drinks;
-        let drinksBoardPage;
+        let drinks: Drink[];
+        let drinksBoardPage: IDrinksBoardPage;
 
         beforeEach(() => {
             pageFixture = fs.readFileSync(
@@ -27,7 +27,7 @@ describe('drinks board page', () => {
 
             drinksBoardPage = drinksBoardPageFactory.createDrinksBoardPage(pageFixture);
 
-            drinks = drinksBoardPage.getAllDrinks(pageFixture);
+            drinks = drinksBoardPage.getAllDrinks();
         });
 
         it('should be able to parse the correct number of drinks from the page', () => {
@@ -35,13 +35,13 @@ describe('drinks board page', () => {
         });
 
         it('should identify that there is a single keg drink', () => {
-            const kegDrinks = drinks.filter(drink => drink.keg === true);
+            const kegDrinks = drinks.filter((drink) => drink.keg === true);
 
             expect(kegDrinks.length).to.equal(1);
         });
 
         it('should identify that there is a single cask drink', () => {
-            const caskDrinks = drinks.filter(drink => drink.cask === true);
+            const caskDrinks = drinks.filter((drink) => drink.cask === true);
 
             expect(caskDrinks.length).to.equal(1);
         });
@@ -50,7 +50,9 @@ describe('drinks board page', () => {
             let drink: Drink;
 
             beforeEach(() => {
-                drink = drinks.filter(drink => drink.keg === true)[0];
+                const kegDrinks = drinks.filter((item) => item.keg === true);
+
+                drink = kegDrinks[0];
             });
 
             it('should correctly have identified the keg drink', () => {
@@ -110,7 +112,9 @@ describe('drinks board page', () => {
             let drink: Drink;
 
             beforeEach(() => {
-                drink = drinks.filter(drink => drink.cask === true)[0];
+                const caskDrinks = drinks.filter((item) => item.cask === true);
+
+                drink = caskDrinks[0];
             });
 
             it('should correctly have identified the cask drink', () => {
@@ -168,7 +172,7 @@ describe('drinks board page', () => {
     });
 
     describe('when parsing a page with a large number of drinks', () => {
-        let drinksBoardPage;
+        let drinksBoardPage: IDrinksBoardPage;
 
         beforeEach(() => {
             pageFixture = fs.readFileSync(
@@ -179,14 +183,14 @@ describe('drinks board page', () => {
         });
 
         it('should be able to parse the correct number of drinks from the page', () => {
-            const drinks = drinksBoardPage.getAllDrinks(pageFixture);
+            const drinks = drinksBoardPage.getAllDrinks();
 
             expect(drinks.length).to.equal(26);
         });
     });
 
     describe('when parsing a page with a vegan drink', () => {
-        let drinksBoardPage;
+        let drinksBoardPage: IDrinksBoardPage;
         let drink: Drink;
 
         beforeEach(() => {
@@ -208,8 +212,8 @@ describe('drinks board page', () => {
         });
     });
 
-describe('when parsing a page with a drink sold in half-pints', () => {
-        let drinksBoardPage;
+    describe('when parsing a page with a drink sold in half-pints', () => {
+        let drinksBoardPage: IDrinksBoardPage;
         let drink: Drink;
 
         beforeEach(() => {

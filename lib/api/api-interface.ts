@@ -1,9 +1,9 @@
 import { Drink } from '../common-types';
 
-export interface APIInterface {
-    getAllDrinks (barLocation: string): Promise<Array<Drink>>;
+export interface IAPI {
+    getAllDrinks (barLocation: string): Promise<Drink[]>;
 
-    getAllCaskDrinks (barLocation: string): Promise<Array<Drink>>;
+    getAllCaskDrinks (barLocation: string): Promise<Drink[]>;
 
-    getAllKegDrinks (barLocation: string): Promise<Array<Drink>>;
+    getAllKegDrinks (barLocation: string): Promise<Drink[]>;
 };

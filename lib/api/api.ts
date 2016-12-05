@@ -1,19 +1,19 @@
 import * as request from 'request';
 
-import { APIInterface } from './api-interface';
 import { barLocations } from '../bars';
 import { Drink } from '../common-types';
-import { DrinksBoardPageFactoryInterface } from '../page-objects/drinks-board';
+import { IDrinksBoardPageFactory } from '../page-objects/drinks-board';
+import { IAPI } from './api-interface';
 
-export class API implements APIInterface {
+export class API implements IAPI {
 
     constructor (
-        private drinksBoardPageFactory: DrinksBoardPageFactoryInterface,
+        private drinksBoardPageFactory: IDrinksBoardPageFactory,
         private request: request.RequestAPI<request.Request, request.RequestCallback, request.RequiredUriUrl>
     ) {}
 
-    getAllDrinks (barLocation: string): Promise<Array<Drink>> {
-        return new Promise(resolve => {
+    public getAllDrinks (barLocation: string): Promise<Drink[]> {
+        return new Promise((resolve) => {
             if (!barLocation) {
                 throw new Error('No bar location specified');
             }
@@ -36,14 +36,14 @@ export class API implements APIInterface {
         });
     }
 
-    getAllCaskDrinks (barLocation: string) {
+    public getAllCaskDrinks (barLocation: string) {
         return this.getAllDrinks(barLocation)
-            .then((drinks: Array<Drink>) => drinks.filter((drink: Drink) => drink.cask === true));
+            .then((drinks: Drink[]) => drinks.filter((drink: Drink) => drink.cask === true));
     }
 
-    getAllKegDrinks (barLocation: string) {
+    public getAllKegDrinks (barLocation: string) {
         return this.getAllDrinks(barLocation)
-            .then((drinks: Array<Drink>) => drinks.filter((drink: Drink) => drink.keg === true));
+            .then((drinks: Drink[]) => drinks.filter((drink: Drink) => drink.keg === true));
 
     }
 

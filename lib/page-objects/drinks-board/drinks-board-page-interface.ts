@@ -1,5 +1,5 @@
 import { Drink } from '../../common-types';
 
-export interface DrinksBoardPageInterface {
-    getAllDrinks () : Array<Drink>;
+export interface IDrinksBoardPage {
+    getAllDrinks (): Drink[];
 };
