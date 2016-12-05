@@ -1,0 +1,36 @@
+{
+  "name": "tiny-rebel-web-scraper",
+  "version": "0.0.0",
+  "description": "Web scraper for getting beer information from the Tiny Rebel beer board",
+  "main": "dist/index.js",
+  "scripts": {
+    "lint": "tslint --cconfig tslint.json ./lib/**/*.ts",
+    "preunit-tests": "tsc test/unit/**/*.spec.ts --module commonjs --outDir test-dist/unit --target es6",
+    "unit-tests": "mocha test-dist/unit/**/*.spec.js",
+    "preintegration-tests": "npm run build",
+    "integration-tests": "mocha test/integration/**/*.spec.js",
+    "test": "npm run lint && npm run unit-tests && npm run integration-tests",
+    "build": "tsc"
+  },
+  "author": "Tom Seldon <https://www.tomseldon.co.uk>",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/chai": "^3.4.34",
+    "@types/mocha": "^2.2.33",
+    "@types/sinon": "^1.16.32",
+    "@types/sinon-chai": "^2.7.27",
+    "chai": "^3.5.0",
+    "mocha": "^3.2.0",
+    "sinon": "^1.17.6",
+    "sinon-chai": "^2.8.0",
+    "tslint": "^4.0.2",
+    "typescript": "^2.0.10"
+  },
+  "dependencies": {
+    "@types/cheerio": "^0.17.31",
+    "@types/node": "0.0.2",
+    "@types/request": "0.0.36",
+    "cheerio": "^0.22.0",
+    "request": "^2.79.0"
+  }
+}
