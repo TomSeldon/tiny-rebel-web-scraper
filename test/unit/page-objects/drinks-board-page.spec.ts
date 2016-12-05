@@ -88,7 +88,11 @@ describe('drinks board page', () => {
             });
 
             it('should correctly parse the ABV level of the drink', () => {
-                expect(drink.abv).to.equal('4.2%');
+                expect(drink.abv).to.equal(4.2);
+            });
+
+            it('should correctly parse the formatted ABV level of the drink', () => {
+                expect(drink.formattedAbv).to.equal('4.2%');
             });
 
             it('should correctly parse that the drink is sold in pints', () => {
@@ -150,7 +154,11 @@ describe('drinks board page', () => {
             });
 
             it('should correctly parse the ABV level of the drink', () => {
-                expect(drink.abv).to.equal('5.5%');
+                expect(drink.abv).to.equal(5.5);
+            });
+
+            it('should correctly parse the formatted ABV level of the drink', () => {
+                expect(drink.formattedAbv).to.equal('5.5%');
             });
 
             it('should correctly parse that the drink is sold in pints', () => {
