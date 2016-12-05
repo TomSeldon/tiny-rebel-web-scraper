@@ -2,6 +2,9 @@
 
 > A small library for querying available drinks at Tiny Rebel bars
 
+[![Build Status](https://travis-ci.org/TomSeldon/tiny-rebel-web-scraper.svg?branch=master)](https://travis-ci.org/TomSeldon/tiny-rebel-web-scraper)
+[![Build status](https://ci.appveyor.com/api/projects/status/pi4ja5d7uchwg2c7/branch/master?svg=true)](https://ci.appveyor.com/project/TomSeldon/tiny-rebel-web-scraper/branch/master)
+
 - [Basic usage](#basic-usage)
 - [API](#api)
   - [getAllDrinks](#getalldrinks)
