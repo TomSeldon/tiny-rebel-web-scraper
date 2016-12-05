@@ -1,0 +1,12 @@
+{
+    "compilerOptions": {
+        "module": "commonjs",
+        "noImplicitAny": true,
+        "removeComments": false,
+        "outDir": "dist",
+        "target": "es6"
+    },
+    "filesGlob": [
+        "test/unit/**/*.spec.ts"
+    ]
+}
