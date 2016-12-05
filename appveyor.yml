@@ -24,4 +24,7 @@ test_script:
     # Run any configured tests / linting tools
     - cmd: npm test
 
+    # Check format of commit messages
+    - cmd: node_modules/.bin/appveyor-commit-message-checker
+
 build: off
