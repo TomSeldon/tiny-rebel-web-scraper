@@ -9,10 +9,6 @@ export class DrinksBoardPage implements IDrinksBoardPage {
     }
 
     public getAllDrinks (): Drink[] {
-        return this.parseDrinksFromPage();
-    }
-
-    private parseDrinksFromPage (): Drink[] {
         const drinks: Drink[] = [];
 
         const rawKegDrinks = this.page('.beer-slider li:nth-child(1) .beer-item');
