@@ -1,5 +1,5 @@
-import { DrinksBoardPageInterface } from './drinks-board-page-interface';
+import { IDrinksBoardPage } from './drinks-board-page-interface';
 
-export interface DrinksBoardPageFactoryInterface {
-    createDrinksBoardPage (drinksPageHTML: string): DrinksBoardPageInterface;
+export interface IDrinksBoardPageFactory {
+    createDrinksBoardPage (drinksPageHTML: string): IDrinksBoardPage;
 }

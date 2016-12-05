@@ -1,19 +1,19 @@
-import { DrinksBoardPageInterface } from './drinks-board-page-interface';
 import { Drink } from '../../common-types';
+import { IDrinksBoardPage } from './drinks-board-page-interface';
 
-export class DrinksBoardPage implements DrinksBoardPageInterface {
+export class DrinksBoardPage implements IDrinksBoardPage {
     private page: CheerioStatic;
 
     constructor (private cheerio: CheerioAPI, private drinksPageHTML: string) {
         this.page = this.cheerio.load(this.drinksPageHTML);
     }
 
-    getAllDrinks (): Array<Drink> {
+    public getAllDrinks (): Drink[] {
         return this.parseDrinksFromPage();
     }
 
-    private parseDrinksFromPage (): Array<Drink> {
-        const drinks: Array<Drink> = [];
+    private parseDrinksFromPage (): Drink[] {
+        const drinks: Drink[] = [];
 
         const rawKegDrinks = this.page('.beer-slider li:nth-child(1) .beer-item');
         const rawCaskDrinks = this.page('.beer-slider li:nth-child(2) .beer-item');
@@ -31,18 +31,18 @@ export class DrinksBoardPage implements DrinksBoardPageInterface {
 
     private parseDrinkFromPage (rawDrink: CheerioElement, drinkType: string): Drink {
         return {
+            abv: this.getDrinkABV(rawDrink),
+            available: this.isAvailable(rawDrink), // TODO: implement this
+            brewery: this.getBrewery(rawDrink),
+            cask: drinkType === 'cask',
+            currency: 'GBP',
+            formattedPrice: this.getFormattedDrinkPrice(rawDrink),
+            keg: drinkType === 'keg',
             name: this.getDrinkName(rawDrink),
             price: this.getDrinkPrice(rawDrink),
-            formattedPrice: this.getFormattedDrinkPrice(rawDrink),
-            currency: 'GBP',
-            brewery: this.getBrewery(rawDrink),
-            style: this.getDrinkStyle(rawDrink),
-            abv: this.getDrinkABV(rawDrink),
-            vegan: this.isVegan(rawDrink),
             quantity: this.getDrinkQuantity(rawDrink),
-            available: this.isAvailable(rawDrink), // todo: implement this
-            keg: drinkType === 'keg',
-            cask: drinkType === 'cask'
+            style: this.getDrinkStyle(rawDrink),
+            vegan: this.isVegan(rawDrink)
         };
     }
 
