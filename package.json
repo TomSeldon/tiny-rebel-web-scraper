@@ -19,6 +19,10 @@
     "prepublish": "npm test && npm run build"
   },
   "author": "Tom Seldon <https://www.tomseldon.co.uk>",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/TomSeldon/tiny-rebel-web-scraper.git"
+  },
   "license": "ISC",
   "devDependencies": {
     "@types/chai": "^3.4.34",
