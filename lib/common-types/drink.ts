@@ -3,7 +3,7 @@ export type Drink = {
     brewery: string;
     style: string;
     available: boolean;
-    price: number;
+    price: number|null;
     formattedPrice: string;
     quantity: 'pint'|'half';
     currency: string;

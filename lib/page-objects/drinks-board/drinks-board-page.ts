@@ -47,12 +47,24 @@ export class DrinksBoardPage implements IDrinksBoardPage {
         const pricingElement = this.page('.beer-price', rawDrink).text();
         const price = pricingElement.match(/£(\d+\.\d+)/);
 
+        // If no pricing information is available just return `null`
+        // Sometimes prices are listed as "Ask" instead of a numerical value
+        if (!price) {
+            return null;
+        }
+
         return parseFloat(price[1]);
     }
 
     private getFormattedDrinkPrice (rawDrink: CheerioElement): string {
         const pricingElement = this.page('.beer-price', rawDrink).text();
         const price = pricingElement.match(/(£\d+\.\d+)/);
+
+        // If no pricing information is available just return "Unknown"
+        // Sometimes prices are listed as "Ask" instead of a numerical value
+        if (!price) {
+            return 'Unknown';
+        }
 
         return price[1];
     }
