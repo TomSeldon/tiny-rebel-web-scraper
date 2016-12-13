@@ -87,3 +87,6 @@ The API will return an array of `Drink` objects, i.e. POJOs with the following p
     vegan: false
 }
 ```
+
+**Note:** Pricing information for drinks will not always be available, in which case the `price` will be reported as `null`
+and the `formattedPrice` will be reported as `'Unknown'`.

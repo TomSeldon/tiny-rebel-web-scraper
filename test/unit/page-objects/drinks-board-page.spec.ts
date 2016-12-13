@@ -246,4 +246,27 @@ describe('drinks board page', () => {
             expect(drink.formattedPrice).to.equal('£3.45');
         });
     });
+
+    describe('when parsing a page with a drink that has no pricing information', () => {
+        let drinksBoardPage: IDrinksBoardPage;
+        let drink: Drink;
+
+        beforeEach(() => {
+            pageFixture = fs.readFileSync(
+              path.join(__dirname, '../../../../../test/fixtures/ask-for-price.html')
+            ).toString();
+
+            drinksBoardPage = drinksBoardPageFactory.createDrinksBoardPage(pageFixture);
+
+            drink = drinksBoardPage.getAllDrinks()[0];
+        });
+
+        it('should report the price as being null', () => {
+            expect(drink.price).to.equal(null);
+        });
+
+        it('should output the formatted price as being "Unknown"', () => {
+            expect(drink.formattedPrice).to.equal('Unknown');
+        });
+    });
 });
