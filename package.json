@@ -1,6 +1,6 @@
 {
   "name": "tiny-rebel-web-scraper",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Web scraper for getting beer information from the Tiny Rebel beer board",
   "main": "dist/index.js",
   "files": [
