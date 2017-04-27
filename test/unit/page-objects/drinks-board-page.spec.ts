@@ -269,4 +269,27 @@ describe('drinks board page', () => {
             expect(drink.formattedPrice).to.equal('Unknown');
         });
     });
+
+    describe('when parsing a page with a drink with an integer price value (e.g. "£5")', () => {
+        let drinksBoardPage: IDrinksBoardPage;
+        let drink: Drink;
+
+        beforeEach(() => {
+            pageFixture = fs.readFileSync(
+              path.join(__dirname, '../../../../../test/fixtures/integer-price.html')
+            ).toString();
+
+            drinksBoardPage = drinksBoardPageFactory.createDrinksBoardPage(pageFixture);
+
+            drink = drinksBoardPage.getAllDrinks()[0];
+        });
+
+        it('should report the price as "5.0"', () => {
+            expect(drink.price).to.equal(5.0);
+        });
+
+        it('should report the formatted price as "£5.00"', () => {
+            expect(drink.formattedPrice).to.equal('£5.00');
+        });
+    });
 });
