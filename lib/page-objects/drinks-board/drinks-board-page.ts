@@ -45,7 +45,7 @@ export class DrinksBoardPage implements IDrinksBoardPage {
 
     private getDrinkPrice (rawDrink: CheerioElement): number {
         const pricingElement = this.page('.beer-price', rawDrink).text();
-        const price = pricingElement.match(/£(\d+\.\d+)/);
+        const price = pricingElement.match(/£(\d+(\.\d+)?)/);
 
         // If no pricing information is available just return `null`
         // Sometimes prices are listed as "Ask" instead of a numerical value
@@ -58,15 +58,20 @@ export class DrinksBoardPage implements IDrinksBoardPage {
 
     private getFormattedDrinkPrice (rawDrink: CheerioElement): string {
         const pricingElement = this.page('.beer-price', rawDrink).text();
-        const price = pricingElement.match(/(£\d+\.\d+)/);
+        const priceMatch = pricingElement.match(/(\d+(\.\d+)?)/);
 
         // If no pricing information is available just return "Unknown"
         // Sometimes prices are listed as "Ask" instead of a numerical value
-        if (!price) {
+        if (!priceMatch) {
             return 'Unknown';
         }
 
-        return price[1];
+        let price = priceMatch[1];
+
+        // Force price to 2dp
+        price = parseFloat(price).toFixed(2);
+
+        return `£${price}`;
     }
 
     private getFormattedABV(rawDrink: CheerioElement): string {
