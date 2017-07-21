@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+
+
+<html>
+
+<head>
+    <title>Beer Board | Urban Tap House</title>
+
+
+    <meta content="Urban Tap House" name="author" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="refresh" content="300" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+    <meta content="" name="description" />
+    <meta content="" name="keywords" />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+
+</head>
+
+<body class="pre-load">
+    <header>
+        <div class="header-slider">
+            <ul class="bxslider">
+                <li>On Keg</li>
+            </ul>
+        </div>
+    </header>
+    <div class="beer-grid-slider">
+        <ul class="beer-slider">
+            <li>
+                <div class="beer-grid max-items-16">
+
+                    <div class="beer-item">
+                        <div class="beer-top">
+                            <p class="beer-name">Huck </p>
+                            <p class="beer-price"><span>&frac13;</span> &pound;2.95</p>
+                        </div>
+                        <div class="beer-bottom">
+                            <p class="beer-brewery">Thornbridge (Bakewell, Derbyshire)</p>
+                            <p class="beer-style">IPA</p>
+                            <p class="beer-abv">8.9%</p>
+                        </div>
+                    </div>
+
+                </div>
+            </li>
+        </ul>
+
+    </div>
+    <footer>
+        <p>Allergens are present in the above items; please ask one of our team for detailed information.</p>
+    </footer>
+
+    <link href='https://fonts.googleapis.com/css?family=Lato:400,700' rel='stylesheet' type='text/css'>
+    <link href="/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="/css/uth-bb-styles.css?v=2" rel="stylesheet" />
+    <link href="/css/jquery.bxslider.css" property="stylesheet" rel="stylesheet" />
+
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="/scripts/jquery.bxslider.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var headerslider = $('.bxslider').bxSlider({
+                slideMargin: 0,
+                pager: false,
+                auto: false,
+                controls: false,
+                onSliderLoad: function () {
+                    $("body").removeClass("pre-load");
+                }
+            });
+
+            var beerslider = $('.beer-slider').bxSlider({
+                slideMargin: 0,
+                pager: false,
+                auto: false,
+                controls: false
+            });
+
+            window.setInterval(function () {
+                headerslider.goToNextSlide();
+                beerslider.goToNextSlide();
+            }, 30000);
+
+        });
+    </script>
+</body>
+
+</html>
