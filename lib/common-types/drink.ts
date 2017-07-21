@@ -1,4 +1,4 @@
-export type Quantity = 'pint'|'half'|'third';
+export type Quantity = 'pint'|'half'|'third'|'two-thirds';
 
 export type Drink = {
     name: string;

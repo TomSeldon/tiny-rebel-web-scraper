@@ -106,6 +106,10 @@ export class DrinksBoardPage implements IDrinksBoardPage {
             return 'third';
         }
 
+        if (pricingText.indexOf('⅔') !== -1) {
+            return 'two-thirds';
+        }
+
         return 'pint';
     }
 

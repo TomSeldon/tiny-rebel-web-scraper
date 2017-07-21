@@ -274,6 +274,33 @@ describe('drinks board page', () => {
         });
     });
 
+    describe('when parsing a page with a drink sold in two-thirds', () => {
+        let drinksBoardPage: IDrinksBoardPage;
+        let drink: Drink;
+
+        beforeEach(() => {
+            pageFixture = fs.readFileSync(
+              path.join(__dirname, '../../../../../test/fixtures/two-thirds-pint.html')
+            ).toString();
+
+            drinksBoardPage = drinksBoardPageFactory.createDrinksBoardPage(pageFixture);
+
+            drink = drinksBoardPage.getAllDrinks()[0];
+        });
+
+        it('should correctly identify the quantity of drink', () => {
+            expect(drink.quantity).to.equal('two-thirds');
+        });
+
+        it('should correctly identify the price of the drink', () => {
+            expect(drink.price).to.equal(2.45);
+        });
+
+        it('should include the formatted price of the drink', () => {
+            expect(drink.formattedPrice).to.equal('£2.45');
+        });
+    });
+
     describe('when parsing a page with a drink that has no pricing information', () => {
         let drinksBoardPage: IDrinksBoardPage;
         let drink: Drink;
