@@ -1,4 +1,4 @@
-import { Drink } from '../../common-types';
+import { Drink, Quantity } from '../../common-types';
 import { IDrinksBoardPage } from './drinks-board-page-interface';
 
 export class DrinksBoardPage implements IDrinksBoardPage {
@@ -94,12 +94,20 @@ export class DrinksBoardPage implements IDrinksBoardPage {
         return parseFloat(this.page('.beer-abv', rawDrink).text().replace('%', ''));
     }
 
-    private getDrinkQuantity (rawDrink: CheerioElement): ('pint'|'half') {
+    private getDrinkQuantity (rawDrink: CheerioElement): Quantity {
         // The quantity that the drink is sold in is contained in the same element as the price
         const pricingText = this.page('.beer-price', rawDrink).text();
 
         if (pricingText.indexOf('½') !== -1) {
             return 'half';
+        }
+
+        if (pricingText.indexOf('⅓') !== -1) {
+            return 'third';
+        }
+
+        if (pricingText.indexOf('⅔') !== -1) {
+            return 'two-thirds';
         }
 
         return 'pint';

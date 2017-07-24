@@ -1,3 +1,5 @@
+export type Quantity = 'pint'|'half'|'third'|'two-thirds';
+
 export type Drink = {
     name: string;
     brewery: string;
@@ -5,7 +7,7 @@ export type Drink = {
     available: boolean;
     price: number|null;
     formattedPrice: string;
-    quantity: 'pint'|'half';
+    quantity: Quantity;
     currency: string;
     abv: number;
     formattedAbv: string;
