@@ -9,7 +9,7 @@ export class API implements IAPI {
 
     constructor (
         private drinksBoardPageFactory: IDrinksBoardPageFactory,
-        private request: request.RequestAPI<request.Request, request.RequestCallback, request.RequiredUriUrl>
+        private request: request.RequestAPI<request.Request, request.CoreOptions, request.RequiredUriUrl>
     ) {}
 
     public getAllDrinks (barLocation: string): Promise<Drink[]> {
