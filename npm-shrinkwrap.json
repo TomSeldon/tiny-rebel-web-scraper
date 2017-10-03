@@ -1,6 +1,6 @@
 {
   "name": "tiny-rebel-web-scraper",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "dependencies": {
     "@types/cheerio": {
       "version": "0.17.31",
