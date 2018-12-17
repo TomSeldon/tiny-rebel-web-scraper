@@ -2,7 +2,6 @@ import * as chai from 'chai';
 import * as request from 'request';
 import * as sinon from 'sinon';
 import * as sinonChai from 'sinon-chai';
-
 import { API } from '../../../lib/api';
 import { Drink } from '../../../lib/common-types';
 
@@ -19,9 +18,9 @@ describe('API', () => {
         mockDrinks = [];
 
         const mockDrinksBoardPageFactory = {
-            createDrinksBoardPage () {
+            createDrinksBoardPage() {
                 return {
-                    getAllDrinks () {
+                    getAllDrinks() {
                         return mockDrinks;
                     }
                 };
@@ -38,67 +37,64 @@ describe('API', () => {
     });
 
     describe('getting all drinks', () => {
-        it('should not allow drinks to be requested when a bar location has not been specified', (done) => {
-            api.getAllDrinks('')
-                .catch((error: Error) => {
-                    expect(error.message).to.equal('No bar location specified');
-                    done();
-                });
+        it('should not allow drinks to be requested when a bar location has not been specified', done => {
+            api.getAllDrinks('').catch((error: Error) => {
+                expect(error.message).to.equal('No bar location specified');
+                done();
+            });
         });
 
-        it('should not allow drinks to be requested for unsupported bar locations', (done) => {
-            api.getAllDrinks('an unsupported bar')
-                .catch((error: Error) => {
-                    expect(error.message).to.equal('Unknown bar location specified');
-                    done();
-                });
+        it('should not allow drinks to be requested for unsupported bar locations', done => {
+            api.getAllDrinks('an unsupported bar').catch((error: Error) => {
+                expect(error.message).to.equal('Unknown bar location specified');
+                done();
+            });
         });
 
         it('should make a GET request to the correct URL', () => {
             api.getAllDrinks('cardiff');
 
-            expect(requestSpy).to.have.been.calledWith('http://www.tinyrebel.co.uk/bars/cardiff/beer-board/');
+            expect(requestSpy).to.have.been.calledWith(
+                'http://www.tinyrebel.co.uk/bars/cardiff/beer-board/'
+            );
         });
 
-        it('should reject when the HTTP call errors', (done) => {
+        it('should reject when the HTTP call errors', done => {
             requestSpy.yields(new Error('Some HTTP error'));
 
-            api.getAllDrinks('cardiff')
-                .catch((error: Error) => {
-                    expect(error.message).to.equal('Unable to load beer board');
-                    done();
-                });
+            api.getAllDrinks('cardiff').catch((error: Error) => {
+                expect(error.message).to.equal('Unable to load beer board');
+                done();
+            });
         });
 
-        it('should reject when the HTTP request results in a server error', (done) => {
+        it('should reject when the HTTP request results in a server error', done => {
             const response = {
                 statusCode: 500
             };
 
             requestSpy.yields(null, response);
 
-            api.getAllDrinks('cardiff')
-                .catch((error: Error) => {
-                    expect(error.message).to.equal('Unable to load beer board');
-                    done();
-                });
+            api.getAllDrinks('cardiff').catch((error: Error) => {
+                expect(error.message).to.equal('Unable to load beer board');
+                done();
+            });
         });
 
-        it('should reject when the HTTP request results in a 404 not found', (done) => {
+        it('should reject when the HTTP request results in a 404 not found', done => {
             const response = {
                 statusCode: 404
             };
 
             requestSpy.yields(null, response);
 
-            api.getAllDrinks('cardiff')
-                .catch((error: Error) => {
-                    expect(error.message).to.equal('Unable to load beer board');
-                    done();
-                });
+            api.getAllDrinks('cardiff').catch((error: Error) => {
+                expect(error.message).to.equal('Unable to load beer board');
+                done();
+            });
         });
 
-        it('should resolve with an array of drinks', (done) => {
+        it('should resolve with an array of drinks', done => {
             mockDrinks = [
                 {
                     abv: 4.2,
@@ -143,67 +139,64 @@ describe('API', () => {
     });
 
     describe('getting all keg drinks', () => {
-        it('should not allow drinks to be requested when a bar location has not been specified', (done) => {
-            api.getAllKegDrinks('')
-                .catch((error: Error) => {
-                    expect(error.message).to.equal('No bar location specified');
-                    done();
-                });
+        it('should not allow drinks to be requested when a bar location has not been specified', done => {
+            api.getAllKegDrinks('').catch((error: Error) => {
+                expect(error.message).to.equal('No bar location specified');
+                done();
+            });
         });
 
-        it('should not allow drinks to be requested for unsupported bar locations', (done) => {
-            api.getAllKegDrinks('an unsupported bar')
-                .catch((error: Error) => {
-                    expect(error.message).to.equal('Unknown bar location specified');
-                    done();
-                });
+        it('should not allow drinks to be requested for unsupported bar locations', done => {
+            api.getAllKegDrinks('an unsupported bar').catch((error: Error) => {
+                expect(error.message).to.equal('Unknown bar location specified');
+                done();
+            });
         });
 
         it('should make a GET request to the correct URL', () => {
             api.getAllKegDrinks('cardiff');
 
-            expect(requestSpy).to.have.been.calledWith('http://www.tinyrebel.co.uk/bars/cardiff/beer-board/');
+            expect(requestSpy).to.have.been.calledWith(
+                'http://www.tinyrebel.co.uk/bars/cardiff/beer-board/'
+            );
         });
 
-        it('should reject when the HTTP call errors', (done) => {
+        it('should reject when the HTTP call errors', done => {
             requestSpy.yields(new Error('Some HTTP error'));
 
-            api.getAllKegDrinks('cardiff')
-                .catch((error: Error) => {
-                    expect(error.message).to.equal('Unable to load beer board');
-                    done();
-                });
+            api.getAllKegDrinks('cardiff').catch((error: Error) => {
+                expect(error.message).to.equal('Unable to load beer board');
+                done();
+            });
         });
 
-        it('should reject when the HTTP request results in a server error', (done) => {
+        it('should reject when the HTTP request results in a server error', done => {
             const response = {
                 statusCode: 500
             };
 
             requestSpy.yields(null, response);
 
-            api.getAllKegDrinks('cardiff')
-                .catch((error: Error) => {
-                    expect(error.message).to.equal('Unable to load beer board');
-                    done();
-                });
+            api.getAllKegDrinks('cardiff').catch((error: Error) => {
+                expect(error.message).to.equal('Unable to load beer board');
+                done();
+            });
         });
 
-        it('should reject when the HTTP request results in a 404 not found', (done) => {
+        it('should reject when the HTTP request results in a 404 not found', done => {
             const response = {
                 statusCode: 404
             };
 
             requestSpy.yields(null, response);
 
-            api.getAllKegDrinks('cardiff')
-                .catch((error: Error) => {
-                    expect(error.message).to.equal('Unable to load beer board');
-                    done();
-                });
+            api.getAllKegDrinks('cardiff').catch((error: Error) => {
+                expect(error.message).to.equal('Unable to load beer board');
+                done();
+            });
         });
 
-        it('should resolve with an array of only the keg drinks', (done) => {
+        it('should resolve with an array of only the keg drinks', done => {
             mockDrinks = [
                 {
                     abv: 4.2,
@@ -264,67 +257,64 @@ describe('API', () => {
     });
 
     describe('getting all cask drinks', () => {
-        it('should not allow drinks to be requested when a bar location has not been specified', (done) => {
-            api.getAllCaskDrinks('')
-                .catch((error: Error) => {
-                    expect(error.message).to.equal('No bar location specified');
-                    done();
-                });
+        it('should not allow drinks to be requested when a bar location has not been specified', done => {
+            api.getAllCaskDrinks('').catch((error: Error) => {
+                expect(error.message).to.equal('No bar location specified');
+                done();
+            });
         });
 
-        it('should not allow drinks to be requested for unsupported bar locations', (done) => {
-            api.getAllCaskDrinks('an unsupported bar')
-                .catch((error: Error) => {
-                    expect(error.message).to.equal('Unknown bar location specified');
-                    done();
-                });
+        it('should not allow drinks to be requested for unsupported bar locations', done => {
+            api.getAllCaskDrinks('an unsupported bar').catch((error: Error) => {
+                expect(error.message).to.equal('Unknown bar location specified');
+                done();
+            });
         });
 
         it('should make a GET request to the correct URL', () => {
             api.getAllCaskDrinks('cardiff');
 
-            expect(requestSpy).to.have.been.calledWith('http://www.tinyrebel.co.uk/bars/cardiff/beer-board/');
+            expect(requestSpy).to.have.been.calledWith(
+                'http://www.tinyrebel.co.uk/bars/cardiff/beer-board/'
+            );
         });
 
-        it('should reject when the HTTP call errors', (done) => {
+        it('should reject when the HTTP call errors', done => {
             requestSpy.yields(new Error('Some HTTP error'));
 
-            api.getAllCaskDrinks('cardiff')
-                .catch((error: Error) => {
-                    expect(error.message).to.equal('Unable to load beer board');
-                    done();
-                });
+            api.getAllCaskDrinks('cardiff').catch((error: Error) => {
+                expect(error.message).to.equal('Unable to load beer board');
+                done();
+            });
         });
 
-        it('should reject when the HTTP request results in a server error', (done) => {
+        it('should reject when the HTTP request results in a server error', done => {
             const response = {
                 statusCode: 500
             };
 
             requestSpy.yields(null, response);
 
-            api.getAllCaskDrinks('cardiff')
-                .catch((error: Error) => {
-                    expect(error.message).to.equal('Unable to load beer board');
-                    done();
-                });
+            api.getAllCaskDrinks('cardiff').catch((error: Error) => {
+                expect(error.message).to.equal('Unable to load beer board');
+                done();
+            });
         });
 
-        it('should reject when the HTTP request results in a 404 not found', (done) => {
+        it('should reject when the HTTP request results in a 404 not found', done => {
             const response = {
                 statusCode: 404
             };
 
             requestSpy.yields(null, response);
 
-            api.getAllCaskDrinks('cardiff')
-                .catch((error: Error) => {
-                    expect(error.message).to.equal('Unable to load beer board');
-                    done();
-                });
+            api.getAllCaskDrinks('cardiff').catch((error: Error) => {
+                expect(error.message).to.equal('Unable to load beer board');
+                done();
+            });
         });
 
-        it('should resolve with an array of only the cask drinks', (done) => {
+        it('should resolve with an array of only the cask drinks', done => {
             mockDrinks = [
                 {
                     abv: 4.2,

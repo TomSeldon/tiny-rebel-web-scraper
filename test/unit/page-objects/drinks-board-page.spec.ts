@@ -2,7 +2,6 @@ import * as chai from 'chai';
 import * as cheerio from 'cheerio';
 import * as fs from 'fs';
 import * as path from 'path';
-
 import { Drink } from '../../../lib/common-types';
 import { DrinksBoardPageFactory, IDrinksBoardPage } from '../../../lib/page-objects/drinks-board';
 
@@ -21,9 +20,11 @@ describe('drinks board page', () => {
         let drinksBoardPage: IDrinksBoardPage;
 
         beforeEach(() => {
-            pageFixture = fs.readFileSync(
-              path.join(__dirname, '../../../../../test/fixtures/one-keg-one-cask-drink.html')
-            ).toString();
+            pageFixture = fs
+                .readFileSync(
+                    path.join(__dirname, '../../../../../test/fixtures/one-keg-one-cask-drink.html')
+                )
+                .toString();
 
             drinksBoardPage = drinksBoardPageFactory.createDrinksBoardPage(pageFixture);
 
@@ -35,13 +36,13 @@ describe('drinks board page', () => {
         });
 
         it('should identify that there is a single keg drink', () => {
-            const kegDrinks = drinks.filter((drink) => drink.keg === true);
+            const kegDrinks = drinks.filter(drink => drink.keg === true);
 
             expect(kegDrinks.length).to.equal(1);
         });
 
         it('should identify that there is a single cask drink', () => {
-            const caskDrinks = drinks.filter((drink) => drink.cask === true);
+            const caskDrinks = drinks.filter(drink => drink.cask === true);
 
             expect(caskDrinks.length).to.equal(1);
         });
@@ -50,7 +51,7 @@ describe('drinks board page', () => {
             let drink: Drink;
 
             beforeEach(() => {
-                const kegDrinks = drinks.filter((item) => item.keg === true);
+                const kegDrinks = drinks.filter(item => item.keg === true);
 
                 drink = kegDrinks[0];
             });
@@ -64,7 +65,7 @@ describe('drinks board page', () => {
             });
 
             it('should correctly parse the price of the drink', () => {
-                expect(drink.price).to.equal(3.70);
+                expect(drink.price).to.equal(3.7);
             });
 
             it('should include the formatted price of the drink', () => {
@@ -116,7 +117,7 @@ describe('drinks board page', () => {
             let drink: Drink;
 
             beforeEach(() => {
-                const caskDrinks = drinks.filter((item) => item.cask === true);
+                const caskDrinks = drinks.filter(item => item.cask === true);
 
                 drink = caskDrinks[0];
             });
@@ -130,7 +131,7 @@ describe('drinks board page', () => {
             });
 
             it('should correctly parse the price of the drink', () => {
-                expect(drink.price).to.equal(3.90);
+                expect(drink.price).to.equal(3.9);
             });
 
             it('should include the formatted price of the drink', () => {
@@ -183,9 +184,11 @@ describe('drinks board page', () => {
         let drinksBoardPage: IDrinksBoardPage;
 
         beforeEach(() => {
-            pageFixture = fs.readFileSync(
-              path.join(__dirname, '../../../../../test/fixtures/cardiff-02-12-2016.html')
-            ).toString();
+            pageFixture = fs
+                .readFileSync(
+                    path.join(__dirname, '../../../../../test/fixtures/cardiff-02-12-2016.html')
+                )
+                .toString();
 
             drinksBoardPage = drinksBoardPageFactory.createDrinksBoardPage(pageFixture);
         });
@@ -202,9 +205,9 @@ describe('drinks board page', () => {
         let drink: Drink;
 
         beforeEach(() => {
-            pageFixture = fs.readFileSync(
-              path.join(__dirname, '../../../../../test/fixtures/vegan-drink.html')
-            ).toString();
+            pageFixture = fs
+                .readFileSync(path.join(__dirname, '../../../../../test/fixtures/vegan-drink.html'))
+                .toString();
 
             drinksBoardPage = drinksBoardPageFactory.createDrinksBoardPage(pageFixture);
 
@@ -225,9 +228,9 @@ describe('drinks board page', () => {
         let drink: Drink;
 
         beforeEach(() => {
-            pageFixture = fs.readFileSync(
-              path.join(__dirname, '../../../../../test/fixtures/half-pint.html')
-            ).toString();
+            pageFixture = fs
+                .readFileSync(path.join(__dirname, '../../../../../test/fixtures/half-pint.html'))
+                .toString();
 
             drinksBoardPage = drinksBoardPageFactory.createDrinksBoardPage(pageFixture);
 
@@ -252,9 +255,9 @@ describe('drinks board page', () => {
         let drink: Drink;
 
         beforeEach(() => {
-            pageFixture = fs.readFileSync(
-              path.join(__dirname, '../../../../../test/fixtures/third-pint.html')
-            ).toString();
+            pageFixture = fs
+                .readFileSync(path.join(__dirname, '../../../../../test/fixtures/third-pint.html'))
+                .toString();
 
             drinksBoardPage = drinksBoardPageFactory.createDrinksBoardPage(pageFixture);
 
@@ -279,9 +282,11 @@ describe('drinks board page', () => {
         let drink: Drink;
 
         beforeEach(() => {
-            pageFixture = fs.readFileSync(
-              path.join(__dirname, '../../../../../test/fixtures/two-thirds-pint.html')
-            ).toString();
+            pageFixture = fs
+                .readFileSync(
+                    path.join(__dirname, '../../../../../test/fixtures/two-thirds-pint.html')
+                )
+                .toString();
 
             drinksBoardPage = drinksBoardPageFactory.createDrinksBoardPage(pageFixture);
 
@@ -306,9 +311,11 @@ describe('drinks board page', () => {
         let drink: Drink;
 
         beforeEach(() => {
-            pageFixture = fs.readFileSync(
-              path.join(__dirname, '../../../../../test/fixtures/ask-for-price.html')
-            ).toString();
+            pageFixture = fs
+                .readFileSync(
+                    path.join(__dirname, '../../../../../test/fixtures/ask-for-price.html')
+                )
+                .toString();
 
             drinksBoardPage = drinksBoardPageFactory.createDrinksBoardPage(pageFixture);
 
@@ -329,9 +336,11 @@ describe('drinks board page', () => {
         let drink: Drink;
 
         beforeEach(() => {
-            pageFixture = fs.readFileSync(
-              path.join(__dirname, '../../../../../test/fixtures/integer-price.html')
-            ).toString();
+            pageFixture = fs
+                .readFileSync(
+                    path.join(__dirname, '../../../../../test/fixtures/integer-price.html')
+                )
+                .toString();
 
             drinksBoardPage = drinksBoardPageFactory.createDrinksBoardPage(pageFixture);
 

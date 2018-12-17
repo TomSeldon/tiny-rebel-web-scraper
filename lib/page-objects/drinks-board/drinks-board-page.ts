@@ -4,11 +4,11 @@ import { IDrinksBoardPage } from './drinks-board-page-interface';
 export class DrinksBoardPage implements IDrinksBoardPage {
     private page: CheerioStatic;
 
-    constructor (private cheerio: CheerioAPI, private drinksPageHTML: string) {
+    constructor(private cheerio: CheerioAPI, private drinksPageHTML: string) {
         this.page = this.cheerio.load(this.drinksPageHTML);
     }
 
-    public getAllDrinks (): Drink[] {
+    public getAllDrinks(): Drink[] {
         const drinks: Drink[] = [];
 
         const rawKegDrinks = this.page('.beer-slider li:nth-child(1) .beer-item');
@@ -25,7 +25,7 @@ export class DrinksBoardPage implements IDrinksBoardPage {
         return drinks;
     }
 
-    private parseDrinkFromPage (rawDrink: CheerioElement, drinkType: string): Drink {
+    private parseDrinkFromPage(rawDrink: CheerioElement, drinkType: string): Drink {
         return {
             abv: this.getDrinkABV(rawDrink),
             available: this.isAvailable(rawDrink),
@@ -43,7 +43,7 @@ export class DrinksBoardPage implements IDrinksBoardPage {
         };
     }
 
-    private getDrinkPrice (rawDrink: CheerioElement): number {
+    private getDrinkPrice(rawDrink: CheerioElement): number {
         const pricingElement = this.page('.beer-price', rawDrink).text();
         const price = pricingElement.match(/£(\d+(\.\d+)?)/);
 
@@ -56,7 +56,7 @@ export class DrinksBoardPage implements IDrinksBoardPage {
         return parseFloat(price[1]);
     }
 
-    private getFormattedDrinkPrice (rawDrink: CheerioElement): string {
+    private getFormattedDrinkPrice(rawDrink: CheerioElement): string {
         const pricingElement = this.page('.beer-price', rawDrink).text();
         const priceMatch = pricingElement.match(/(\d+(\.\d+)?)/);
 
@@ -78,23 +78,29 @@ export class DrinksBoardPage implements IDrinksBoardPage {
         return this.page('.beer-abv', rawDrink).text();
     }
 
-    private getDrinkName (rawDrink: CheerioElement): string {
-         return this.page('.beer-name', rawDrink).text().trim();
+    private getDrinkName(rawDrink: CheerioElement): string {
+        return this.page('.beer-name', rawDrink)
+            .text()
+            .trim();
     }
 
-    private getBrewery (rawDrink: CheerioElement): string {
+    private getBrewery(rawDrink: CheerioElement): string {
         return this.page('.beer-brewery', rawDrink).text();
     }
 
-    private getDrinkStyle (rawDrink: CheerioElement): string {
+    private getDrinkStyle(rawDrink: CheerioElement): string {
         return this.page('.beer-style', rawDrink).text();
     }
 
-    private getDrinkABV (rawDrink: CheerioElement): number {
-        return parseFloat(this.page('.beer-abv', rawDrink).text().replace('%', ''));
+    private getDrinkABV(rawDrink: CheerioElement): number {
+        return parseFloat(
+            this.page('.beer-abv', rawDrink)
+                .text()
+                .replace('%', '')
+        );
     }
 
-    private getDrinkQuantity (rawDrink: CheerioElement): Quantity {
+    private getDrinkQuantity(rawDrink: CheerioElement): Quantity {
         // The quantity that the drink is sold in is contained in the same element as the price
         const pricingText = this.page('.beer-price', rawDrink).text();
 
@@ -113,7 +119,7 @@ export class DrinksBoardPage implements IDrinksBoardPage {
         return 'pint';
     }
 
-    private isVegan (rawDrink: CheerioElement): boolean {
+    private isVegan(rawDrink: CheerioElement): boolean {
         return this.page('.beer-name .vegan', rawDrink).length === 1;
     }
 
@@ -124,7 +130,7 @@ export class DrinksBoardPage implements IDrinksBoardPage {
      *
      * This makes finding an example of when a drink is unavailable quite difficult.
      */
-    private isAvailable (rawDrink: CheerioElement): boolean {
+    private isAvailable(rawDrink: CheerioElement): boolean {
         return true;
     }
 }

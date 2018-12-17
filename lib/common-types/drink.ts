@@ -1,11 +1,11 @@
-export type Quantity = 'pint'|'half'|'third'|'two-thirds';
+export type Quantity = 'pint' | 'half' | 'third' | 'two-thirds';
 
-export type Drink = {
+export interface Drink {
     name: string;
     brewery: string;
     style: string;
     available: boolean;
-    price: number|null;
+    price: number | null;
     formattedPrice: string;
     quantity: Quantity;
     currency: string;
@@ -14,4 +14,4 @@ export type Drink = {
     vegan: boolean;
     keg: boolean;
     cask: boolean;
-};
+}

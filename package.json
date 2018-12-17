@@ -1,47 +1,47 @@
 {
-  "name": "tiny-rebel-web-scraper",
-  "version": "1.0.5",
-  "description": "Web scraper for getting beer information from the Tiny Rebel beer board",
-  "main": "dist/index.js",
-  "files": [
-    "dist"
-  ],
-  "scripts": {
-    "lint": "npm run lint:src && npm run lint:unit-tests",
-    "lint:src": "tslint --config tslint.json --project tsconfig.json",
-    "lint:unit-tests": "tslint --config tslint.json --project tsconfig-unit-tests.json",
-    "preunit-tests": "tsc --project tsconfig-unit-tests.json --module commonjs --outDir test-dist/unit --target es6",
-    "unit-tests": "mocha test-dist/unit/**/*.spec.js",
-    "preintegration-tests": "npm run build",
-    "integration-tests": "mocha test/integration/**/*.spec.js",
-    "test": "npm run lint && npm run unit-tests && npm run integration-tests",
-    "build": "tsc",
-    "prepublish": "npm test && npm run build"
-  },
-  "author": "Tom Seldon <https://www.tomseldon.co.uk>",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/TomSeldon/tiny-rebel-web-scraper.git"
-  },
-  "license": "ISC",
-  "devDependencies": {
-    "@types/chai": "^3.4.34",
-    "@types/mocha": "^2.2.33",
-    "@types/sinon": "^1.16.32",
-    "@types/sinon-chai": "^2.7.27",
-    "chai": "^3.5.0",
-    "commit-message-checker": "^1.1.0",
-    "mocha": "^3.2.0",
-    "sinon": "^1.17.6",
-    "sinon-chai": "^2.8.0",
-    "tslint": "^4.0.2",
-    "typescript": "^2.0.10"
-  },
-  "dependencies": {
-    "@types/cheerio": "^0.17.31",
-    "@types/node": "0.0.2",
-    "@types/request": "0.0.36",
-    "cheerio": "^0.22.0",
-    "request": "^2.79.0"
-  }
+    "name": "tiny-rebel-web-scraper",
+    "version": "1.0.5",
+    "description": "Web scraper for getting beer information from the Tiny Rebel beer board",
+    "main": "dist/index.js",
+    "files": [
+        "dist"
+    ],
+    "scripts": {
+        "lint": "npm run lint:src && npm run lint:unit-tests",
+        "lint:src": "tslint --config tslint.json --project tsconfig.json",
+        "lint:unit-tests": "tslint --config test/tslint.json --project tsconfig-unit-tests.json",
+        "preunit-tests": "tsc --project tsconfig-unit-tests.json --module commonjs --outDir test-dist/unit --target es6",
+        "unit-tests": "mocha test-dist/unit/**/*.spec.js",
+        "preintegration-tests": "npm run build",
+        "integration-tests": "mocha test/integration/**/*.spec.js",
+        "test": "npm run lint && npm run unit-tests && npm run integration-tests",
+        "build": "tsc",
+        "prepublish": "npm test && npm run build"
+    },
+    "author": "Tom Seldon <https://www.tomseldon.co.uk>",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/TomSeldon/tiny-rebel-web-scraper.git"
+    },
+    "license": "ISC",
+    "devDependencies": {
+        "@types/chai": "^4.1.7",
+        "@types/mocha": "^5.2.5",
+        "@types/sinon": "^7.0.0",
+        "@types/sinon-chai": "^3.2.2",
+        "chai": "^4.2.0",
+        "commit-message-checker": "^1.1.1",
+        "mocha": "^5.2.0",
+        "sinon": "^7.2.2",
+        "sinon-chai": "^3.3.0",
+        "tslint": "^5.11.0",
+        "typescript": "^3.2.2"
+    },
+    "dependencies": {
+        "@types/cheerio": "^0.22.10",
+        "@types/node": "10.12.15",
+        "@types/request": "2.48.1",
+        "cheerio": "^0.22.0",
+        "request": "^2.88.0"
+    }
 }
